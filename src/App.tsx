@@ -1,19 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import TVGuide from './features/TVGuide/TVGuide';
 // import './App.css';
 
 function App() {
 
-  useEffect(() => {
-    const url = "https://cdn.skyq.sky.com/recruitment/tvguide/services.json";
+  // const initialState: InitialState = {};
+  const [services, setServices] = useState([])
 
-    fetch(url)
+  useEffect(() => {
+    const servicesUrl = "https://cdn.skyq.sky.com/recruitment/tvguide/services.json";
+    const scheduleUrl = "https://cdn.skyq.sky.com/recruitment/tvguide/schedule/20200129/2002.json";
+
+    fetch(servicesUrl)
       .then((res) => res.json())
-      .then(jsonRes => console.log({ jsonRes }));
+      .then(services => {
+        console.log({ services });
+        setServices(services)
+      });
+
+    fetch(scheduleUrl)
+      .then((res) => res.json())
+      .then(schedule => console.log({ schedule }));
   }, [])
 
   return (
     <div className="App">
-      App
+      <TVGuide services={services} />
     </div>
   );
 }
