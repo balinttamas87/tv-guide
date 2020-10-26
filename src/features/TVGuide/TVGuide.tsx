@@ -21,14 +21,23 @@ function TVGuide({ services, schedule }: any) {
 					/>
 				))}
 			</div>
-			{/* { border: "1px solid black" } */}
-			<div style={{ display: "flex" }}>
+			<div
+				style={{
+					display: "flex",
+					background: "linear-gradient(90deg,#0644a1,#862e81)",
+				}}
+			>
 				{schedule.events.map((event: any) => (
 					<div
 						key={event.eid}
 						style={{
 							display: "block",
-							border: "1px solid black",
+							// background: "rgba(2, 89, 199, 1)",
+							// background: "rgba(9, 119, 225, 1)",
+							// background: "#0644a1",
+							// background: "linear-gradient(90deg,#0644a1,#862e81)",
+							color: "#ffffff",
+							border: "1px solid rgba(85, 174, 254, 0.2)",
 							lineHeight: "67px",
 							width: getWidth(event.d),
 							height: "67px",
