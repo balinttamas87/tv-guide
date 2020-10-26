@@ -1,3 +1,4 @@
 .service-program-list {
 	display: flex;
+	max-width: 6720px;
 }

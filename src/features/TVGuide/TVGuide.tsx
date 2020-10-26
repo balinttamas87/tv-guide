@@ -1,35 +1,17 @@
 import React from "react";
-import ServiceBox from "./components/ServiceBox/ServiceBox";
-import ServiceProgram from "./components/ServiceProgram/ServiceProgram";
-import ServiceProgramList from "./components/ServiceProgramList/ServiceProgramList";
 import ServiceScheduleList from "./components/ServiceScheduleList/ServiceScheduleList";
+import TimeLine from "./components/TimeLine/TimeLine";
+import ServiceBoxList from "./components/ServiceBoxList/ServiceBoxList";
 
 function TVGuide({ services, schedules }: any) {
 	return (
-		<div style={{ display: "flex", flexDirection: "row" }}>
-			<div>
-				{services.map((service: any) => (
-					<ServiceBox
-						key={service.sid}
-						number={service.c}
-						format={service.sf}
-						genre={service.sg}
-						id={service.sid}
-						title={service.t}
-					/>
-				))}
+		<div>
+			<TimeLine />
+
+			<div style={{ display: "flex", flexDirection: "row", marginTop: "26px" }}>
+				<ServiceBoxList services={services} />
+				<ServiceScheduleList schedules={schedules} />
 			</div>
-			<ServiceScheduleList>
-				{schedules.map((schedule: any) => {
-					return (
-						<ServiceProgramList key={schedule.sid}>
-							{schedule.events.map((event: any) => (
-								<ServiceProgram event={event} key={event.eid} />
-							))}
-						</ServiceProgramList>
-					);
-				})}
-			</ServiceScheduleList>
 		</div>
 	);
 }
