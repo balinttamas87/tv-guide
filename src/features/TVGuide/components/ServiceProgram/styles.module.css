@@ -1,0 +1,8 @@
+.service-program {
+	display: block;
+	color: #ffffff;
+	border: 1px solid rgba(85, 174, 254, 0.2);
+	line-height: 67px;
+	height: 67px;
+	overflow: hidden;
+}

@@ -1,12 +1,10 @@
 import React from "react";
 import ServiceBox from "./components/ServiceBox/ServiceBox";
+import ServiceProgram from "./components/ServiceProgram/ServiceProgram";
+import ServiceProgramList from "./components/ServiceProgramList/ServiceProgramList";
+import ServiceScheduleList from "./components/ServiceScheduleList/ServiceScheduleList";
 
-function TVGuide({ services, schedule }: any) {
-	const getWidth = (duration: number) => {
-		const widthOfOneHourBlock = 280; // 280px
-		return `${(duration / 3600) * widthOfOneHourBlock}px`;
-	};
-
+function TVGuide({ services, schedules }: any) {
 	return (
 		<div style={{ display: "flex", flexDirection: "row" }}>
 			<div>
@@ -21,33 +19,17 @@ function TVGuide({ services, schedule }: any) {
 					/>
 				))}
 			</div>
-			<div
-				style={{
-					display: "flex",
-					background: "linear-gradient(90deg,#0644a1,#862e81)",
-				}}
-			>
-				{schedule.events.map((event: any) => (
-					<div
-						key={event.eid}
-						style={{
-							display: "block",
-							// background: "rgba(2, 89, 199, 1)",
-							// background: "rgba(9, 119, 225, 1)",
-							// background: "#0644a1",
-							// background: "linear-gradient(90deg,#0644a1,#862e81)",
-							color: "#ffffff",
-							border: "1px solid rgba(85, 174, 254, 0.2)",
-							lineHeight: "67px",
-							width: getWidth(event.d),
-							height: "67px",
-							overflow: "hidden",
-						}}
-					>
-						{event.t}
-					</div>
-				))}
-			</div>
+			<ServiceScheduleList>
+				{schedules.map((schedule: any) => {
+					return (
+						<ServiceProgramList key={schedule.sid}>
+							{schedule.events.map((event: any) => (
+								<ServiceProgram event={event} key={event.eid} />
+							))}
+						</ServiceProgramList>
+					);
+				})}
+			</ServiceScheduleList>
 		</div>
 	);
 }
