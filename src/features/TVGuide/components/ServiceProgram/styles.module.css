@@ -1,7 +1,10 @@
 .service-program {
 	display: block;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 	color: #ffffff;
-	border: 1px solid rgba(85, 174, 254, 0.2);
+	border-bottom: 1px solid rgba(85, 174, 254, 0.2);
+	border-right: 1px solid rgba(85, 174, 254, 0.2);
 	line-height: 67px;
 	height: 67px;
 	overflow: hidden;
