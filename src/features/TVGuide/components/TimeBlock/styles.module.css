@@ -1,0 +1,9 @@
+.time-block {
+	display: inline-block;
+	width: 140px;
+	padding-left: 1rem;
+	font-weight: bold;
+	font-size: 1.15rem;
+	border-right: 1px solid rgba(85, 174, 254, 0.2);
+	line-height: 25px;
+}
