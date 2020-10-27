@@ -13,10 +13,10 @@ function ScheduleDates() {
 	const dispatch = useDispatch();
 	const scheduleDates = useSelector(selectScheduleDates);
 	const selectedIndex = useSelector(selectedDateIndex);
-	const date = scheduleDates[selectedIndex];
+	const selectedDate = scheduleDates[selectedIndex];
 
-	const onSelectDate = (e: any) => {
-		dispatch(selectDate(e.target.innerHTML));
+	const onSelectDate = (date: string) => {
+		dispatch(selectDate(date));
 	};
 
 	const onNavigateSchedule = (direction: number) => {
@@ -33,13 +33,13 @@ function ScheduleDates() {
 			</button>
 
 			<ul className={styles["schedule-date-list"]}>
-				{scheduleDates.map((dateString: string, index: number) => {
+				{scheduleDates.map((date: string, index: number) => {
 					return (
 						<ScheduleDate
-							key={dateString}
+							key={date}
 							onSelectDate={onSelectDate}
-							selectedDate={date}
-							dateString={dateString}
+							selectedDate={selectedDate}
+							date={date}
 							index={index}
 							selectedIndex={selectedIndex}
 						/>

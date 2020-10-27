@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import fetchServices from "../api/fetchServices";
 import fetchSchedule from "../api/fetchSchedule";
+import dayjs, { Dayjs } from "dayjs";
 
 const getServices = createAsyncThunk("fetchServices", async () => {
 	return fetchServices()
@@ -21,34 +22,21 @@ const getSchedules = createAsyncThunk(
 	}
 );
 
-const toAPIAcceptedDateFormat = (dateObject: Date) => {
-	const fullYear = dateObject.getFullYear();
-	const month = dateObject.getMonth() + 1; // months are zero based
-	const date = dateObject.getDate();
-	const formattedMonth = String(month).padStart(2, "0");
-	const formattedDate = String(date).padStart(2, "0");
-	return `${fullYear}${formattedMonth}${formattedDate}`;
-};
+const toAPIAcceptedDateFormat = (date: Dayjs) => date.format("YYYYMMDD");
 
 // get 7 consecutive dates starting from today's date for service schedules
-const getScheduleDates = (): string[] => {
+const getInitialScheduleDates = (): string[] => {
 	// today's date is 29/01/2020 for the sake of this project
-	const dateObject = new Date(2020, 0, 29);
-	const fullYear = dateObject.getFullYear();
-	const month = dateObject.getMonth();
-	const date = dateObject.getDate();
-
 	return Array(7)
 		.fill(null)
-		.map((__, index) => {
-			const dateString = toAPIAcceptedDateFormat(
-				new Date(fullYear, month, date + index)
+		.map((__, numberOfDays) => {
+			return toAPIAcceptedDateFormat(
+				dayjs(new Date(2020, 0, 29)).add(numberOfDays, "day")
 			);
-			return dateString;
 		});
 };
 
-const initialScheduleDates: string[] = getScheduleDates();
+const initialScheduleDates: string[] = getInitialScheduleDates();
 
 /*
 	Normally we would get todays date by calling 'new Date()' with no arguments.
@@ -72,6 +60,7 @@ const tvGuideSlice = createSlice({
 			state.selectedDate = action.payload;
 			state.selectedDateIndex = state.scheduleDates.indexOf(action.payload);
 		},
+		// action.payload is either 1 or -1 indicating the direction
 		navigateSchedule(state, action) {
 			const selectedIndex = state.selectedDateIndex + action.payload;
 			state.selectedDateIndex = selectedIndex;
