@@ -1,10 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+	// actions
 	selectDate,
 	navigateSchedule,
-	selectedDateIndex,
+	// selectors
+	selectSelectedDateIndex,
 	selectScheduleDates,
+	selectLoading,
 } from "../../store/tvGuideSlice";
 import ScheduleDate from "../ScheduleDate/ScheduleDate";
 import styles from "./styles.module.css";
@@ -12,8 +15,9 @@ import styles from "./styles.module.css";
 function ScheduleDates() {
 	const dispatch = useDispatch();
 	const scheduleDates = useSelector(selectScheduleDates);
-	const selectedIndex = useSelector(selectedDateIndex);
+	const selectedIndex = useSelector(selectSelectedDateIndex);
 	const selectedDate = scheduleDates[selectedIndex];
+	const isLoading = useSelector(selectLoading);
 
 	const onSelectDate = (date: string) => {
 		dispatch(selectDate(date));
@@ -23,9 +27,9 @@ function ScheduleDates() {
 		dispatch(navigateSchedule(direction));
 	};
 
-	const isPreviousButtonDisabled = selectedIndex === 0;
+	const isPreviousButtonDisabled = selectedIndex === 0 || isLoading;
 	const lastScheduleIndex = scheduleDates.length - 1;
-	const isNextButtonDisabled = selectedIndex === lastScheduleIndex;
+	const isNextButtonDisabled = selectedIndex === lastScheduleIndex || isLoading;
 
 	return (
 		<div className={styles["schedule-date-list-wrapper"]}>

@@ -96,10 +96,11 @@ const tvGuideSlice = createSlice({
 // selectors
 export const selectServices = (state: any) => state.tvGuide.services;
 export const selectSchedules = (state: any) => state.tvGuide.schedules;
-export const selectedDate = (state: any) => state.tvGuide.selectedDate;
-export const selectedDateIndex = (state: any) =>
+export const selectSelectedDate = (state: any) => state.tvGuide.selectedDate;
+export const selectSelectedDateIndex = (state: any) =>
 	state.tvGuide.selectedDateIndex;
 export const selectScheduleDates = (state: any) => state.tvGuide.scheduleDates;
+export const selectLoading = (state: any) => state.tvGuide.loading;
 
 // actions
 export const { selectDate, navigateSchedule } = tvGuideSlice.actions;

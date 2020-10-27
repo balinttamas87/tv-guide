@@ -9,7 +9,7 @@ import {
 	selectSchedules,
 	getSchedules,
 	selectScheduleDates,
-	selectedDateIndex,
+	selectSelectedDateIndex,
 } from "./store/tvGuideSlice";
 import ScheduleDateList from "./components/ScheduleDateList/ScheduleDateList";
 
@@ -19,7 +19,7 @@ function TVGuide() {
 	const limitedNumberOfServices = services.slice(0, 20);
 	const schedules = useSelector(selectSchedules);
 	const scheduleDates = useSelector(selectScheduleDates);
-	const selectedIndex = useSelector(selectedDateIndex);
+	const selectedIndex = useSelector(selectSelectedDateIndex);
 	const date = scheduleDates[selectedIndex];
 
 	useEffect(() => {
