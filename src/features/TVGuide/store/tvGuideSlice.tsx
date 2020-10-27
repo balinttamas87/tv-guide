@@ -21,12 +21,25 @@ const getSchedules = createAsyncThunk(
 	}
 );
 
+const toAPIAcceptedDateFormat = (dateObject: Date) => {
+	const fullYear = dateObject.getFullYear();
+	const month = dateObject.getMonth() + 1; // months are zero based
+	const date = dateObject.getDate();
+	const formattedMonth = String(month).padStart(2, "0");
+	const formattedDate = String(date).padStart(2, "0");
+	return `${fullYear}${formattedMonth}${formattedDate}`;
+};
+
+/*
+	Normally we would get todays date by calling 'new Date()' with no arguments.
+	However for the sake of this test we set 29/01/2020 as today's date in initialState, in the following format: 29012020.
+*/
 export const initialState = {
 	loading: false,
 	error: null,
 	services: [],
 	schedules: [],
-	selectedDate: "20200129",
+	selectedDate: toAPIAcceptedDateFormat(new Date(2020, 0, 29)),
 };
 
 const tvGuideSlice = createSlice({
