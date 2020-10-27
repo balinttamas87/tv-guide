@@ -32,7 +32,7 @@ const toAPIAcceptedDateFormat = (dateObject: Date) => {
 
 /*
 	Normally we would get todays date by calling 'new Date()' with no arguments.
-	However for the sake of this test we set 29/01/2020 as today's date in initialState, in the following format: 29012020.
+	However for the sake of this test we set 29/01/2020 as today's date in initialState, in the following format: 29012020. This format is used by the api when we query schedules for a given service.
 */
 export const initialState = {
 	loading: false,
