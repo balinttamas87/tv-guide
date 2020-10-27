@@ -10,12 +10,12 @@ const getServices = createAsyncThunk("fetchServices", async () => {
 
 const getSchedules = createAsyncThunk(
 	"fetchSchedules",
-	async (services: any) => {
+	async ({ services, date }: any) => {
 		return Promise.all(
 			services
 				.slice(0, 20)
 				.map((service: any) =>
-					fetchSchedule(service.sid).then((res: any) => res.json())
+					fetchSchedule(service.sid, date).then((res: any) => res.json())
 				)
 		).then((schedules: any) => schedules);
 	}
@@ -26,12 +26,17 @@ export const initialState = {
 	error: null,
 	services: [],
 	schedules: [],
+	selectedDate: "20200129",
 };
 
 const tvGuideSlice = createSlice({
 	name: "tvGuide",
 	initialState,
-	reducers: {},
+	reducers: {
+		selectDate(state, action) {
+			state.selectedDate = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(getServices.pending, (state) => {
 			state.loading = true;
@@ -61,9 +66,10 @@ const tvGuideSlice = createSlice({
 // selectors
 export const selectServices = (state: any) => state.tvGuide.services;
 export const selectSchedules = (state: any) => state.tvGuide.schedules;
+export const selectedDate = (state: any) => state.tvGuide.selectedDate;
 
 // actions
-
+export const { selectDate } = tvGuideSlice.actions;
 // thunks
 export { getServices, getSchedules };
 

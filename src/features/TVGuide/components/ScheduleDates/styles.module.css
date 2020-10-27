@@ -1,0 +1,19 @@
+.schedule-date-list {
+	color: #ffffff;
+	/* font-weight: bold; */
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 26px;
+	background: #0644a1;
+	cursor: pointer;
+}
+.schedule-date-list__item {
+	display: inline-block;
+	margin: 0 1rem;
+}
+
+.schedule-date-list__item--selected {
+	font-weight: bold;
+}

@@ -1,5 +1,5 @@
-const fetchSchedule = (serviceId: string) => {
-	const scheduleUrl = `https://cdn.skyq.sky.com/recruitment/tvguide/schedule/20200129/${serviceId}.json`;
+const fetchSchedule = (serviceId: string, date: string) => {
+	const scheduleUrl = `https://cdn.skyq.sky.com/recruitment/tvguide/schedule/${date}/${serviceId}.json`;
 
 	return fetch(scheduleUrl);
 };
