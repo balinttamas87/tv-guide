@@ -23,11 +23,16 @@ function ScheduleDates() {
 		dispatch(navigateSchedule(direction));
 	};
 
+	const isPreviousButtonDisabled = selectedIndex === 0;
+	const lastScheduleIndex = scheduleDates.length - 1;
+	const isNextButtonDisabled = selectedIndex === lastScheduleIndex;
+
 	return (
 		<div className={styles["schedule-date-list-wrapper"]}>
 			<button
 				onClick={() => onNavigateSchedule(-1)}
 				className={styles["schedule-date-list__navigation-button"]}
+				disabled={isPreviousButtonDisabled}
 			>
 				{"<"}
 			</button>
@@ -50,6 +55,7 @@ function ScheduleDates() {
 			<button
 				onClick={() => onNavigateSchedule(1)}
 				className={styles["schedule-date-list__navigation-button"]}
+				disabled={isNextButtonDisabled}
 			>
 				{">"}
 			</button>

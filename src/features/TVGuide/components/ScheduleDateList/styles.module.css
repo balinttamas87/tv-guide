@@ -27,6 +27,10 @@
 	cursor: pointer;
 }
 
+.schedule-date-list__navigation-button:disabled {
+	cursor: not-allowed;
+}
+
 @media only screen and (min-width: 768px) {
 	.schedule-date-list__navigation-button {
 		display: none;
