@@ -10,7 +10,7 @@ import {
 	getSchedules,
 	selectedDate,
 } from "./store/tvGuideSlice";
-import ScheduleDates from "./components/ScheduleDates/ScheduleDates";
+import ScheduleDateList from "./components/ScheduleDateList/ScheduleDateList";
 
 function TVGuide() {
 	const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function TVGuide() {
 
 	return (
 		<div>
-			<ScheduleDates />
+			<ScheduleDateList />
 			<TimeLine />
 
 			<div style={{ display: "flex", flexDirection: "row", marginTop: "52px" }}>

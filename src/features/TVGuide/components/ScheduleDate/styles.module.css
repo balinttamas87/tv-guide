@@ -1,0 +1,8 @@
+.schedule-date-list__item {
+	display: inline-block;
+	margin: 0 1rem;
+}
+
+.schedule-date-list__item--selected {
+	font-weight: bold;
+}
