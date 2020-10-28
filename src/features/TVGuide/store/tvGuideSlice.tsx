@@ -50,6 +50,8 @@ export const initialState = {
 	scheduleDates: initialScheduleDates,
 	selectedDate: initialScheduleDates[0],
 	selectedDateIndex: 0,
+	isProgramModalOpen: false,
+	programDetailsInModal: {},
 };
 
 const tvGuideSlice = createSlice({
@@ -65,6 +67,14 @@ const tvGuideSlice = createSlice({
 			const selectedIndex = state.selectedDateIndex + action.payload;
 			state.selectedDateIndex = selectedIndex;
 			state.selectedDate = state.scheduleDates[selectedIndex];
+		},
+		openProgramModal(state, action) {
+			state.isProgramModalOpen = true;
+			state.programDetailsInModal = action.payload;
+		},
+		closeProgramModal(state) {
+			state.isProgramModalOpen = false;
+			state.programDetailsInModal = {};
 		},
 	},
 	extraReducers: (builder) => {
@@ -101,9 +111,18 @@ export const selectSelectedDateIndex = (state: any) =>
 	state.tvGuide.selectedDateIndex;
 export const selectScheduleDates = (state: any) => state.tvGuide.scheduleDates;
 export const selectLoading = (state: any) => state.tvGuide.loading;
+export const selectIsProgramModalOpen = (state: any) =>
+	state.tvGuide.isProgramModalOpen;
+export const selectProgramDetailsInModal = (state: any) =>
+	state.tvGuide.programDetailsInModal;
 
 // actions
-export const { selectDate, navigateSchedule } = tvGuideSlice.actions;
+export const {
+	selectDate,
+	navigateSchedule,
+	openProgramModal,
+	closeProgramModal,
+} = tvGuideSlice.actions;
 // thunks
 export { getServices, getSchedules };
 

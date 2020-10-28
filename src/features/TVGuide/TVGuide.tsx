@@ -4,14 +4,18 @@ import ServiceScheduleList from "./components/ServiceScheduleList/ServiceSchedul
 import TimeLine from "./components/TimeLine/TimeLine";
 import ServiceBoxList from "./components/ServiceBoxList/ServiceBoxList";
 import {
-	selectServices,
+	// thunks
 	getServices,
-	selectSchedules,
 	getSchedules,
+	// selectors
+	selectServices,
+	selectSchedules,
 	selectScheduleDates,
 	selectSelectedDateIndex,
+	selectIsProgramModalOpen,
 } from "./store/tvGuideSlice";
 import ScheduleDateList from "./components/ScheduleDateList/ScheduleDateList";
+import ProgramModal from "../ProgramModal/ProgramModal";
 
 function TVGuide() {
 	const dispatch = useDispatch();
@@ -21,6 +25,7 @@ function TVGuide() {
 	const scheduleDates = useSelector(selectScheduleDates);
 	const selectedIndex = useSelector(selectSelectedDateIndex);
 	const date = scheduleDates[selectedIndex];
+	const isProgramModalOpen = useSelector(selectIsProgramModalOpen);
 
 	useEffect(() => {
 		dispatch(getServices());
@@ -39,6 +44,8 @@ function TVGuide() {
 				<ServiceBoxList services={limitedNumberOfServices} />
 				<ServiceScheduleList schedules={schedules} />
 			</div>
+
+			<ProgramModal isOpen={isProgramModalOpen} />
 		</>
 	);
 }

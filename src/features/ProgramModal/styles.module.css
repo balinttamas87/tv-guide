@@ -1,0 +1,8 @@
+.program-modal__heading,
+.program-modal__paragraph {
+	margin-bottom: 1rem;
+}
+.program-modal__synopsis {
+	max-width: 400px;
+	line-height: 1.3;
+}
