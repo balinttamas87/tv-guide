@@ -30,6 +30,7 @@ const getSchedules = createAsyncThunk(
 	}
 );
 
+// This format is used by the api when we query schedules for a given service.
 const toAPIAcceptedDateFormat = (date: Dayjs) => date.format("YYYYMMDD");
 
 // get 7 consecutive dates starting from today's date for service schedules
@@ -46,10 +47,6 @@ const getInitialScheduleDates = (): string[] => {
 
 const initialScheduleDates: string[] = getInitialScheduleDates();
 
-/*
-	Normally we would get todays date by calling 'new Date()' with no arguments.
-	However for the sake of this test we set 29/01/2020 as today's date in initialState, in the following format: 29012020. This format is used by the api when we query schedules for a given service.
-*/
 export const initialState = {
 	loading: false,
 	error: null,
