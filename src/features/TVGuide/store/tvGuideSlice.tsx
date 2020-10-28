@@ -1,7 +1,15 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import type Service from "../../../types/Service";
+import type ProgramDetails from "../../../types/ProgramDetails";
+import { RootState } from "../../../app/store";
 import fetchServices from "../api/fetchServices";
 import fetchSchedule from "../api/fetchSchedule";
 import dayjs, { Dayjs } from "dayjs";
+
+interface GetSchedulesParams {
+	services: Service[];
+	date: string;
+}
 
 const getServices = createAsyncThunk("fetchServices", async () => {
 	return fetchServices()
@@ -11,12 +19,12 @@ const getServices = createAsyncThunk("fetchServices", async () => {
 
 const getSchedules = createAsyncThunk(
 	"fetchSchedules",
-	async ({ services, date }: any) => {
+	async ({ services, date }: GetSchedulesParams) => {
 		return Promise.all(
 			services
 				.slice(0, 20)
-				.map((service: any) =>
-					fetchSchedule(service.sid, date).then((res: any) => res.json())
+				.map((service: Service) =>
+					fetchSchedule(service.sid, date).then((res) => res.json())
 				)
 		).then((schedules: any) => schedules);
 	}
@@ -58,17 +66,17 @@ const tvGuideSlice = createSlice({
 	name: "tvGuide",
 	initialState,
 	reducers: {
-		selectDate(state, action) {
+		selectDate(state, action: PayloadAction<string>) {
 			state.selectedDate = action.payload;
 			state.selectedDateIndex = state.scheduleDates.indexOf(action.payload);
 		},
 		// action.payload is either 1 or -1 indicating the direction
-		navigateSchedule(state, action) {
+		navigateSchedule(state, action: PayloadAction<number>) {
 			const selectedIndex = state.selectedDateIndex + action.payload;
 			state.selectedDateIndex = selectedIndex;
 			state.selectedDate = state.scheduleDates[selectedIndex];
 		},
-		openProgramModal(state, action) {
+		openProgramModal(state, action: PayloadAction<ProgramDetails>) {
 			state.isProgramModalOpen = true;
 			state.programDetailsInModal = action.payload;
 		},
@@ -104,14 +112,16 @@ const tvGuideSlice = createSlice({
 });
 
 // selectors
-export const selectServices = (state: any) => state.tvGuide.services;
-export const selectSchedules = (state: any) => state.tvGuide.schedules;
-export const selectSelectedDate = (state: any) => state.tvGuide.selectedDate;
-export const selectSelectedDateIndex = (state: any) =>
+export const selectServices = (state: RootState) => state.tvGuide.services;
+export const selectSchedules = (state: RootState) => state.tvGuide.schedules;
+export const selectSelectedDate = (state: RootState) =>
+	state.tvGuide.selectedDate;
+export const selectSelectedDateIndex = (state: RootState) =>
 	state.tvGuide.selectedDateIndex;
-export const selectScheduleDates = (state: any) => state.tvGuide.scheduleDates;
-export const selectLoading = (state: any) => state.tvGuide.loading;
-export const selectIsProgramModalOpen = (state: any) =>
+export const selectScheduleDates = (state: RootState) =>
+	state.tvGuide.scheduleDates;
+export const selectLoading = (state: RootState) => state.tvGuide.loading;
+export const selectIsProgramModalOpen = (state: RootState) =>
 	state.tvGuide.isProgramModalOpen;
 export const selectProgramDetailsInModal = (state: any) =>
 	state.tvGuide.programDetailsInModal;
