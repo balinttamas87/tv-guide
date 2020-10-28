@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
-import type { ProgramDetails } from "../../ProgramModal";
+import type ProgramDetails from "../../../../types/ProgramDetails";
 import styles from "./styles.module.css";
 
 interface Props {

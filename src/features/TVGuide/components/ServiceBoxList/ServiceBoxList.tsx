@@ -1,15 +1,18 @@
 import React from "react";
+import type Service from "../../../../types/Service";
 import ServiceBox from "../ServiceBox/ServiceBox";
 
-function ServiceList({ services }: any) {
+interface Props {
+	services: Service[];
+}
+
+function ServiceList({ services }: Props) {
 	return (
 		<div>
-			{services.map((service: any) => (
+			{services.map((service: Service) => (
 				<ServiceBox
 					key={service.sid}
 					number={service.c}
-					format={service.sf}
-					genre={service.sg}
 					id={service.sid}
 					title={service.t}
 				/>

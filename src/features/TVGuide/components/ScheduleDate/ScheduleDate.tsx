@@ -2,7 +2,15 @@ import React from "react";
 import styles from "./styles.module.css";
 import dayjs from "dayjs";
 
-function ScheduleDate({ onSelectDate, date, index, selectedIndex }: any) {
+interface Props {
+	key: string;
+	onSelectDate: (date: string) => void;
+	date: string;
+	index: number;
+	selectedIndex: number;
+}
+
+function ScheduleDate({ onSelectDate, date, index, selectedIndex }: Props) {
 	const isSelected = selectedIndex === index;
 
 	const className = `${styles["schedule-date-list__item"]}

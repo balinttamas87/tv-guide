@@ -16,7 +16,6 @@ function ScheduleDates() {
 	const dispatch = useDispatch();
 	const scheduleDates = useSelector(selectScheduleDates);
 	const selectedIndex = useSelector(selectSelectedDateIndex);
-	const selectedDate = scheduleDates[selectedIndex];
 	const isLoading = useSelector(selectLoading);
 
 	const onSelectDate = (date: string) => {
@@ -47,7 +46,6 @@ function ScheduleDates() {
 						<ScheduleDate
 							key={date}
 							onSelectDate={onSelectDate}
-							selectedDate={selectedDate}
 							date={date}
 							index={index}
 							selectedIndex={selectedIndex}

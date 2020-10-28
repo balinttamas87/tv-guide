@@ -1,11 +1,16 @@
 import React from "react";
 import ServiceProgramList from "../ServiceProgramList/ServiceProgramList";
+import type Schedule from "../../../../types/Schedule";
 import styles from "./styles.module.css";
 
-function ServiceScheduleList({ schedules }: any) {
+interface Props {
+	schedules: Schedule[];
+}
+
+function ServiceScheduleList({ schedules }: Props) {
 	return (
 		<div className={styles["service-schedule-wrapper"]}>
-			{schedules.map((schedule: any) => (
+			{schedules.map((schedule: Schedule) => (
 				<ServiceProgramList schedule={schedule} key={schedule.sid} />
 			))}
 		</div>

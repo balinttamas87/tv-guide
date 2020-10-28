@@ -1,7 +1,13 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-function Modal({ isOpen, onCloseModal, modalBodyContent }: any) {
+interface Props {
+	isOpen: boolean;
+	onCloseModal: () => void;
+	modalBodyContent: React.ReactNode;
+}
+
+function Modal({ isOpen, onCloseModal, modalBodyContent }: Props) {
 	return isOpen ? (
 		<div className={styles["modal"]}>
 			<div className={styles["modal__content"]}>

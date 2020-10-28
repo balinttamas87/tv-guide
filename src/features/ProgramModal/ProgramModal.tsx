@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import type ProgramDetails from "../../types/ProgramDetails";
 import {
 	closeProgramModal,
 	selectProgramDetailsInModal,
@@ -9,26 +10,6 @@ import ProgramModalBodyContent from "./components/ProgramModalBodyContent/Progra
 
 interface Props {
 	isOpen: boolean;
-}
-
-export interface ProgramDetails {
-	eid: string;
-	st: number;
-	d: number;
-	t: string;
-	sy: string;
-	eg: string;
-	esg?: string;
-	seasonnumber?: number;
-	episodenumber?: number;
-	programmeuuid: string;
-	seriesuuid: string;
-	seasonuuid: string;
-	r: string;
-	s: boolean;
-	ad: boolean;
-	hd: boolean;
-	new: boolean;
 }
 
 function ProgramModal({ isOpen }: Props) {
