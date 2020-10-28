@@ -39,12 +39,6 @@ function ProgramModal({ isOpen }: Props) {
 	const onCloseModal = () => {
 		dispatch(closeProgramModal());
 	};
-	// Title
-	/* date and time from 'st', channel name, duration in hour,  */
-	// SATURDAY OCT 31ST, 7:00 PM ON A&E, 1 HR 2016 TV-14
-	/* season number, episode number, genre / subgenre */
-	// SEASON 17 • EPISODE 26 • SNAPSHOT • DOCUMENTARY / CRIME
-	// Synopsis
 
 	const {
 		t: title,
