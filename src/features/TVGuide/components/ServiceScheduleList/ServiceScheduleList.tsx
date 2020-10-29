@@ -1,42 +1,38 @@
 import React from "react";
+import { FixedSizeList } from "react-window";
 import ServiceProgramList from "../ServiceProgramList/ServiceProgramList";
 import type Schedule from "../../../../types/Schedule";
+import type Service from "../../../../types/Service";
+import ServiceBox from "../../../TVGuide/components/ServiceBox/ServiceBox";
 import styles from "./styles.module.css";
-
-import { FixedSizeList } from "react-window";
 
 interface Props {
 	schedules: Schedule[];
-	serviceBoxListRef: any;
-	serviceScheduleListRef: any;
+	services: Service[];
 }
 
-function ServiceScheduleList({
-	schedules,
-	serviceBoxListRef,
-	serviceScheduleListRef,
-}: Props) {
-	const Row = ({ index, style }: any) => (
-		<span style={style} key={schedules[index]?.["sid"]}>
-			<ServiceProgramList
-				schedule={schedules[index]}
-				key={schedules[index]?.["sid"]}
-			/>
-		</span>
-	);
+function ServiceScheduleList({ schedules, services }: Props) {
 	return (
 		<div className={styles["service-schedule-wrapper"]}>
 			<FixedSizeList
-				height={1340}
+				height={67 * 20}
 				itemCount={546}
 				itemSize={67}
 				width={6720}
-				ref={serviceScheduleListRef}
-				onScroll={(scrollParams) => {
-					serviceBoxListRef?.current?.scrollTo(scrollParams.scrollOffset);
-				}}
 			>
-				{Row}
+				{({ index, style }) => (
+					<div style={style} className={styles["service-schedule-row"]}>
+						<ServiceBox
+							number={services[index]?.c}
+							id={services[index]?.sid}
+							title={services[index]?.t}
+						/>
+						<ServiceProgramList
+							schedule={schedules[index]}
+							key={schedules[index]?.["sid"]}
+						/>
+					</div>
+				)}
 			</FixedSizeList>
 		</div>
 	);

@@ -1,3 +1,8 @@
 .service-schedule-wrapper {
 	background: linear-gradient(90deg, #0644a1, #862e81);
 }
+.service-schedule-row {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
