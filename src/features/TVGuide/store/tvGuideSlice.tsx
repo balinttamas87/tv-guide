@@ -5,7 +5,7 @@ import { RootState } from "../../../app/store";
 import fetchServices from "../api/fetchServices";
 import fetchSchedule from "../api/fetchSchedule";
 import dayjs, { Dayjs } from "dayjs";
-import unionBy from "lodash.unionby";
+import union from "lodash.union";
 
 interface GetSchedulesParams {
 	services: Service[];
@@ -112,7 +112,7 @@ const tvGuideSlice = createSlice({
 		});
 		builder.addCase(getSchedules.fulfilled, (state, { payload }) => {
 			state.loading = false;
-			state.schedules = unionBy(state.schedules, payload, "sid");
+			state.schedules = union(state.schedules, payload);
 		});
 	},
 });
