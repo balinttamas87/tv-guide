@@ -5,10 +5,15 @@ import { RootState } from "../../../app/store";
 import fetchServices from "../api/fetchServices";
 import fetchSchedule from "../api/fetchSchedule";
 import dayjs, { Dayjs } from "dayjs";
+import unionBy from "lodash.unionby";
 
 interface GetSchedulesParams {
 	services: Service[];
 	date: string;
+	range?: {
+		startIndex: number;
+		stopIndex: number;
+	};
 }
 
 const getServices = createAsyncThunk("fetchServices", async () => {
@@ -19,11 +24,17 @@ const getServices = createAsyncThunk("fetchServices", async () => {
 
 const getSchedules = createAsyncThunk(
 	"fetchSchedules",
-	async ({ services, date }: GetSchedulesParams) => {
+	async ({
+		services,
+		date,
+		range = { startIndex: 0, stopIndex: 20 },
+	}: GetSchedulesParams) => {
 		return Promise.all(
-			services.map((service: Service) =>
-				fetchSchedule(service.sid, date).then((res) => res.json())
-			)
+			services
+				.slice(range.startIndex, range.stopIndex)
+				.map((service: Service) =>
+					fetchSchedule(service.sid, date).then((res) => res.json())
+				)
 		).then((schedules: any) => schedules);
 	}
 );
@@ -101,7 +112,7 @@ const tvGuideSlice = createSlice({
 		});
 		builder.addCase(getSchedules.fulfilled, (state, { payload }) => {
 			state.loading = false;
-			state.schedules = payload;
+			state.schedules = unionBy(state.schedules, payload, "sid");
 		});
 	},
 });
