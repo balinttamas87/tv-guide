@@ -11,8 +11,8 @@ interface Props {
 function ServiceProgramList({ schedule }: Props) {
 	return (
 		<div className={styles["service-program-list"]}>
-			{schedule.events.map((event: ProgramDetails) => (
-				<ServiceProgram event={event} key={event.eid} />
+			{schedule?.events?.map((event: ProgramDetails) => (
+				<ServiceProgram event={event} key={event?.eid} />
 			))}
 		</div>
 	);

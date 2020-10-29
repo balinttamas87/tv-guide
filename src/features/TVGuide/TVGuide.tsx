@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ServiceScheduleList from "./components/ServiceScheduleList/ServiceScheduleList";
 import TimeLine from "./components/TimeLine/TimeLine";
@@ -20,12 +20,13 @@ import ProgramModal from "../ProgramModal/ProgramModal";
 function TVGuide() {
 	const dispatch = useDispatch();
 	const services = useSelector(selectServices);
-	const limitedNumberOfServices = services.slice(0, 20);
 	const schedules = useSelector(selectSchedules);
 	const scheduleDates = useSelector(selectScheduleDates);
 	const selectedIndex = useSelector(selectSelectedDateIndex);
 	const date = scheduleDates[selectedIndex];
 	const isProgramModalOpen = useSelector(selectIsProgramModalOpen);
+	const serviceBoxListRef = useRef<HTMLElement | null>(null);
+	const serviceScheduleListRef = useRef<HTMLElement | null>(null);
 
 	useEffect(() => {
 		dispatch(getServices());
@@ -41,8 +42,16 @@ function TVGuide() {
 			<TimeLine />
 
 			<div style={{ display: "flex", flexDirection: "row", marginTop: "78px" }}>
-				<ServiceBoxList services={limitedNumberOfServices} />
-				<ServiceScheduleList schedules={schedules} />
+				<ServiceBoxList
+					services={services}
+					serviceBoxListRef={serviceBoxListRef}
+					serviceScheduleListRef={serviceScheduleListRef}
+				/>
+				<ServiceScheduleList
+					schedules={schedules}
+					serviceBoxListRef={serviceBoxListRef}
+					serviceScheduleListRef={serviceScheduleListRef}
+				/>
 			</div>
 
 			<ProgramModal isOpen={isProgramModalOpen} />

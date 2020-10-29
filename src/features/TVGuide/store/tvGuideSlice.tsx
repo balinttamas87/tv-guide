@@ -21,11 +21,9 @@ const getSchedules = createAsyncThunk(
 	"fetchSchedules",
 	async ({ services, date }: GetSchedulesParams) => {
 		return Promise.all(
-			services
-				.slice(0, 20)
-				.map((service: Service) =>
-					fetchSchedule(service.sid, date).then((res) => res.json())
-				)
+			services.map((service: Service) =>
+				fetchSchedule(service.sid, date).then((res) => res.json())
+			)
 		).then((schedules: any) => schedules);
 	}
 );
