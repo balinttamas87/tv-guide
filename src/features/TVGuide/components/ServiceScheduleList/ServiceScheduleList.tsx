@@ -12,13 +12,18 @@ interface Props {
 }
 
 function ServiceScheduleList({ schedules, services }: Props) {
+	const numberOfItemsToRender = 20;
+	const numberOfServices = 546;
+	const itemSizeInPx = 67;
+	const rowWidthInPx = 6920;
+
 	return (
 		<div className={styles["service-schedule-wrapper"]}>
 			<FixedSizeList
-				height={67 * 20}
-				itemCount={546}
-				itemSize={67}
-				width={6720}
+				height={itemSizeInPx * numberOfItemsToRender}
+				itemCount={numberOfServices}
+				itemSize={itemSizeInPx}
+				width={rowWidthInPx}
 			>
 				{({ index, style }) => (
 					<div style={style} className={styles["service-schedule-row"]}>
