@@ -42,6 +42,7 @@ In the following video you can watch the app in action and all its features
 
 
 ## Some things that could be improved or added
+- Find a better way of updating the schedules list to make sure rendering does not come to halt
 - Ability to filter by service genre
 
 
