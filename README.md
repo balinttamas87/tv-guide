@@ -1,4 +1,55 @@
+[To start the project](#to-start-the-project)
+
+[The following has been built or done for this technical test](#the-following-has-been-built-or-done-for-this-technical-test)
+
+[Things that I have experimented with for the first time](#things-that-i-have-experimented-with-for-the-first-time)
+
+[Some things that could be improved or added](#some-things-that-could-be-improved-or-added)
+
+## To start the project
+
+Clone this repo, `cd` into it and
+run 
+### `yarn`
+from the terminal to install dependencies listed in package.json.
+
+Once all packages are installed you can run 
+### `yarn start`
+
+The app will run on the following url: [http://localhost:3000](http://localhost:3000).
+
+To run the tests run
+### `yarn test -- --coverage --verbose
+(you might need to hit the letter "a" to run all tests when prompted)
+
+## The following has been built or done for this technical test
+In the following video you can watch the app in action and all its features
+
+{link for video coming sooon}
+
+- Display all channels in a list format
+- A given channel's airings (programs) are displayed in a row and users can navigate through them by scrolling.
+- Navigating through seven days of scheduled airings by selecting a date on larger screens and clicking either next or previous buttons on smaller screens.
+- Details of a given airing (program) can be viewed in a modal by clicking on the airing. The modal can only be closed by clicking the Close button.
+- Some tests for the Modal component (Jest + react-testing-library)
+- To make rendering faster I have chosen a library called react-window. It is working. 
+	However, currently I am not using it in a performant way. Possibly when merging the existing schedules array with the newly fetched schedules there is a 					performance bottleneck.
+
+## Things that I have experimented with for the first time
+- react-window for windowing
+- dayjs to make working with dates and date like strings easier and cleaner
+- redux-toolkit combined with TypeScript (I have tried redux-toolkit before without TypeScript)
+
+
+## Some things that could be improved or added
+- Ability to filter by service genre
+
+
+
+## Project has been bootstrapped with CRA using Redux Toolkit and TypeScript template
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
 
 ## Available Scripts
 
