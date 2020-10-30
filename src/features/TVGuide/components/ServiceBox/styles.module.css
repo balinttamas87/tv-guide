@@ -6,14 +6,10 @@
 	letter-spacing: 0;
 	list-style: none;
 	box-sizing: border-box;
-	-webkit-font-smoothing: subpixel-antialiased;
-	text-rendering: optimizeLegibility;
 	color: #ffffff;
 	line-height: 67px;
 	height: 67px;
 	border-bottom: 1px solid rgba(85, 174, 254, 0.2);
-	/* border-bottom: 1px solid #0644a1; */
-	/* background: rgba(2, 53, 130, 1); */
 	background: linear-gradient(90deg, #0644a1, #862e81);
 	width: 200px;
 }
@@ -25,4 +21,5 @@
 
 .service-logo {
 	max-height: 35px;
+	max-width: 100px;
 }

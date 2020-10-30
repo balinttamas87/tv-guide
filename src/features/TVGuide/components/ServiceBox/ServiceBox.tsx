@@ -13,19 +13,25 @@ function ServiceBox({ number, id, title }: Props) {
 		<div className={styles["service-box"]}>
 			<picture className={styles["service-picture"]}>
 				<source
-					srcSet={`https://cdn.skyq.sky.com/recruitment/tvguide/logos/${id}/100x100.png`}
-					media="(min-width: 481px)"
+					// Could store breakpoints in a constants folder
+					// Greater than 1201px - Extra large screens, TV
+					// 1025px - 1200px - Desktops, large screens
+					srcSet={`https://cdn.skyq.sky.com/recruitment/tvguide/logos/${id}/300x300.png`}
+					media="(min-width: 1025px)"
 				/>
 				<source
+					// 769px - 1024px - Small screens, laptops
 					srcSet={`https://cdn.skyq.sky.com/recruitment/tvguide/logos/${id}/150x150.png`}
 					media="(min-width: 769px)"
 				/>
 				<source
-					srcSet={`https://cdn.skyq.sky.com/recruitment/tvguide/logos/${id}/300x300.png`}
-					media="(min-width: 1025px)"
+					// 481px - 768px - Tablets
+					srcSet={`https://cdn.skyq.sky.com/recruitment/tvguide/logos/${id}/100x100.png`}
+					media="(min-width: 481px)"
 				/>
 				<img
 					className={styles["service-logo"]}
+					// 320px - 480px - Mobile
 					srcSet={`https://cdn.skyq.sky.com/recruitment/tvguide/logos/${id}/50x50.png`}
 					alt={title}
 				/>
