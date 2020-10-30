@@ -1,7 +1,12 @@
-.service-schedule-wrapper {
+.service-schedule {
+	margin-top: 78px;
+	display: flex;
+	flex-direction: row;
+}
+.service-schedule__list {
 	background: linear-gradient(90deg, #0644a1, #862e81);
 }
-.service-schedule-row {
+.service-schedule__row {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;

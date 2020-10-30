@@ -37,11 +37,7 @@ function TVGuide() {
 		<>
 			<ScheduleDateList />
 			<TimeLine />
-
-			<div style={{ display: "flex", flexDirection: "row", marginTop: "78px" }}>
-				<ServiceScheduleList schedules={schedules} services={services} />
-			</div>
-
+			<ServiceScheduleList schedules={schedules} services={services} />
 			<ProgramModal isOpen={isProgramModalOpen} />
 		</>
 	);

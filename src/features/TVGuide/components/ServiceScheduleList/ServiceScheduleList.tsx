@@ -33,39 +33,41 @@ function ServiceScheduleList({ schedules, services }: Props) {
 	};
 
 	return (
-		<InfiniteLoader
-			isItemLoaded={isItemLoaded}
-			itemCount={numberOfServices}
-			loadMoreItems={loadMoreItems}
-		>
-			{({ onItemsRendered, ref }) => (
-				<div className={styles["service-schedule-wrapper"]}>
-					<FixedSizeList
-						height={itemSizeInPx * numberOfItemsToRender}
-						itemCount={numberOfServices}
-						itemSize={itemSizeInPx}
-						width={rowWidthInPx}
-						overscanCount={10}
-						onItemsRendered={onItemsRendered}
-						ref={ref}
-					>
-						{({ index, style }) => (
-							<div style={style} className={styles["service-schedule-row"]}>
-								<ServiceBox
-									number={services[index]?.c}
-									id={services[index]?.sid}
-									title={services[index]?.t}
-								/>
-								<ServiceProgramList
-									schedule={schedules[index]}
-									key={schedules[index]?.["sid"]}
-								/>
-							</div>
-						)}
-					</FixedSizeList>
-				</div>
-			)}
-		</InfiniteLoader>
+		<div className={styles["service-schedule"]}>
+			<InfiniteLoader
+				isItemLoaded={isItemLoaded}
+				itemCount={numberOfServices}
+				loadMoreItems={loadMoreItems}
+			>
+				{({ onItemsRendered, ref }) => (
+					<div className={styles["service-schedule__list"]}>
+						<FixedSizeList
+							height={itemSizeInPx * numberOfItemsToRender}
+							itemCount={numberOfServices}
+							itemSize={itemSizeInPx}
+							width={rowWidthInPx}
+							overscanCount={10}
+							onItemsRendered={onItemsRendered}
+							ref={ref}
+						>
+							{({ index, style }) => (
+								<div style={style} className={styles["service-schedule__row"]}>
+									<ServiceBox
+										number={services[index]?.c}
+										id={services[index]?.sid}
+										title={services[index]?.t}
+									/>
+									<ServiceProgramList
+										schedule={schedules[index]}
+										key={schedules[index]?.["sid"]}
+									/>
+								</div>
+							)}
+						</FixedSizeList>
+					</div>
+				)}
+			</InfiniteLoader>
+		</div>
 	);
 }
 
