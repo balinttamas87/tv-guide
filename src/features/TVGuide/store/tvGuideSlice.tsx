@@ -96,6 +96,7 @@ const tvGuideSlice = createSlice({
 			const selectedIndex = state.selectedDateIndex + action.payload;
 			state.selectedDateIndex = selectedIndex;
 			state.selectedDate = state.scheduleDates[selectedIndex];
+			state.schedules = schedulesAdapter.getInitialState();
 		},
 		openProgramModal(state, action: PayloadAction<ProgramDetails>) {
 			state.isProgramModalOpen = true;
