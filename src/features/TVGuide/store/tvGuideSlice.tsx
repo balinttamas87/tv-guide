@@ -70,7 +70,7 @@ const getInitialScheduleDates = (): string[] => {
 const initialScheduleDates: string[] = getInitialScheduleDates();
 
 export const initialState = {
-	loading: false,
+	isLoading: false,
 	error: null,
 	services: servicesAdapter.getInitialState(),
 	schedules: schedulesAdapter.getInitialState(),
@@ -109,26 +109,26 @@ const tvGuideSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(getServices.pending, (state) => {
-			state.loading = true;
+			state.isLoading = true;
 		});
 		builder.addCase(getServices.rejected, (state, action: any) => {
-			state.loading = false;
+			state.isLoading = false;
 			state.error = action.error;
 		});
 		builder.addCase(getServices.fulfilled, (state, { payload }) => {
-			state.loading = false;
+			state.isLoading = false;
 			servicesAdapter.setAll(state.services, payload);
 		});
 		builder.addCase(getSchedules.pending, (state, { meta }) => {
 			state.lastScheduleRequestId = meta.requestId;
-			state.loading = true;
+			state.isLoading = true;
 		});
 		builder.addCase(getSchedules.rejected, (state, action: any) => {
-			state.loading = false;
+			state.isLoading = false;
 			state.error = action.error;
 		});
 		builder.addCase(getSchedules.fulfilled, (state, { payload, meta }) => {
-			state.loading = false;
+			state.isLoading = false;
 			if (meta.requestId === state.lastScheduleRequestId) {
 				schedulesAdapter.addMany(state.schedules, payload);
 			}
@@ -145,7 +145,7 @@ export const selectSelectedDateIndex = (state: RootState) =>
 	state.tvGuide.selectedDateIndex;
 export const selectScheduleDates = (state: RootState) =>
 	state.tvGuide.scheduleDates;
-export const selectLoading = (state: RootState) => state.tvGuide.loading;
+export const selectIsLoading = (state: RootState) => state.tvGuide.isLoading;
 export const selectIsProgramModalOpen = (state: RootState) =>
 	state.tvGuide.isProgramModalOpen;
 export const selectProgramDetailsInModal = (state: any) =>

@@ -6,7 +6,11 @@ import ServiceProgramList from "../ServiceProgramList/ServiceProgramList";
 import type Schedule from "../../../../types/Schedule";
 import type Service from "../../../../types/Service";
 import ServiceBox from "../../../TVGuide/components/ServiceBox/ServiceBox";
-import { selectSelectedDate, getSchedules } from "../../store/tvGuideSlice";
+import {
+	selectSelectedDate,
+	selectIsLoading,
+	getSchedules,
+} from "../../store/tvGuideSlice";
 import styles from "./styles.module.css";
 
 interface Props {
@@ -17,6 +21,7 @@ interface Props {
 function ServiceScheduleList({ schedules, services }: Props) {
 	const dispatch = useDispatch();
 	const date = useSelector(selectSelectedDate);
+	const isLoading = useSelector(selectIsLoading);
 	const numberOfItemsToRender = 20;
 	const numberOfServices = 546;
 	const itemSizeInPx = 67;
@@ -26,10 +31,11 @@ function ServiceScheduleList({ schedules, services }: Props) {
 		index < schedules.length && schedules[index] !== null;
 
 	const loadMoreItems = (startIndex: number, stopIndex: number) => {
+		// Do not call the api again while the previous results are still loading
+		if (isLoading) return Promise.resolve();
+
 		const range = { startIndex, stopIndex };
-		return new Promise((resolve) => {
-			resolve(dispatch(getSchedules({ services, date, range })));
-		});
+		return Promise.resolve(dispatch(getSchedules({ services, date, range })));
 	};
 
 	return (
