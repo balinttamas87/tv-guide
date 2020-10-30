@@ -1,11 +1,16 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import {
+	createSlice,
+	createAsyncThunk,
+	createEntityAdapter,
+	PayloadAction,
+} from "@reduxjs/toolkit";
 import type Service from "../../../types/Service";
+import type Schedule from "../../../types/Schedule";
 import type ProgramDetails from "../../../types/ProgramDetails";
 import { RootState } from "../../../app/store";
 import fetchServices from "../api/fetchServices";
 import fetchSchedule from "../api/fetchSchedule";
 import dayjs, { Dayjs } from "dayjs";
-import union from "lodash.union";
 
 interface GetSchedulesParams {
 	services: Service[];
@@ -15,6 +20,14 @@ interface GetSchedulesParams {
 		stopIndex: number;
 	};
 }
+
+const servicesAdapter = createEntityAdapter({
+	selectId: (service: Service) => service.sid,
+});
+
+const schedulesAdapter = createEntityAdapter({
+	selectId: (schedule: Schedule) => schedule.sid,
+});
 
 const getServices = createAsyncThunk("fetchServices", async () => {
 	return fetchServices()
@@ -59,8 +72,8 @@ const initialScheduleDates: string[] = getInitialScheduleDates();
 export const initialState = {
 	loading: false,
 	error: null,
-	services: [],
-	schedules: [],
+	services: servicesAdapter.getInitialState(),
+	schedules: schedulesAdapter.getInitialState(),
 	scheduleDates: initialScheduleDates,
 	selectedDate: initialScheduleDates[0],
 	selectedDateIndex: 0,
@@ -75,6 +88,7 @@ const tvGuideSlice = createSlice({
 		selectDate(state, action: PayloadAction<string>) {
 			state.selectedDate = action.payload;
 			state.selectedDateIndex = state.scheduleDates.indexOf(action.payload);
+			state.schedules = schedulesAdapter.getInitialState();
 		},
 		// action.payload is either 1 or -1 indicating the direction
 		navigateSchedule(state, action: PayloadAction<number>) {
@@ -101,7 +115,7 @@ const tvGuideSlice = createSlice({
 		});
 		builder.addCase(getServices.fulfilled, (state, { payload }) => {
 			state.loading = false;
-			state.services = payload;
+			servicesAdapter.setAll(state.services, payload);
 		});
 		builder.addCase(getSchedules.pending, (state) => {
 			state.loading = true;
@@ -112,7 +126,7 @@ const tvGuideSlice = createSlice({
 		});
 		builder.addCase(getSchedules.fulfilled, (state, { payload }) => {
 			state.loading = false;
-			state.schedules = union(state.schedules, payload);
+			schedulesAdapter.addMany(state.schedules, payload);
 		});
 	},
 });
@@ -131,6 +145,8 @@ export const selectIsProgramModalOpen = (state: RootState) =>
 	state.tvGuide.isProgramModalOpen;
 export const selectProgramDetailsInModal = (state: any) =>
 	state.tvGuide.programDetailsInModal;
+export const serviceSelectors = servicesAdapter.getSelectors();
+export const scheduleSelectors = schedulesAdapter.getSelectors();
 
 // actions
 export const {
