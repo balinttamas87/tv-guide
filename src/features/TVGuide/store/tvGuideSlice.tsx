@@ -74,6 +74,7 @@ export const initialState = {
 	error: null,
 	services: servicesAdapter.getInitialState(),
 	schedules: schedulesAdapter.getInitialState(),
+	lastScheduleRequestId: "",
 	scheduleDates: initialScheduleDates,
 	selectedDate: initialScheduleDates[0],
 	selectedDateIndex: 0,
@@ -117,16 +118,19 @@ const tvGuideSlice = createSlice({
 			state.loading = false;
 			servicesAdapter.setAll(state.services, payload);
 		});
-		builder.addCase(getSchedules.pending, (state) => {
+		builder.addCase(getSchedules.pending, (state, { meta }) => {
+			state.lastScheduleRequestId = meta.requestId;
 			state.loading = true;
 		});
 		builder.addCase(getSchedules.rejected, (state, action: any) => {
 			state.loading = false;
 			state.error = action.error;
 		});
-		builder.addCase(getSchedules.fulfilled, (state, { payload }) => {
+		builder.addCase(getSchedules.fulfilled, (state, { payload, meta }) => {
 			state.loading = false;
-			schedulesAdapter.addMany(state.schedules, payload);
+			if (meta.requestId === state.lastScheduleRequestId) {
+				schedulesAdapter.addMany(state.schedules, payload);
+			}
 		});
 	},
 });
