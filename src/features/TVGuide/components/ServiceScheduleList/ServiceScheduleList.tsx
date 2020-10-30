@@ -27,6 +27,10 @@ function ServiceScheduleList({ schedules, services }: Props) {
 	const itemSizeInPx = 67;
 	const rowWidthInPx = 6920;
 
+	const hasMoreToLoad = schedules.length < numberOfServices;
+
+	const itemCount = hasMoreToLoad ? schedules.length + 10 : schedules.length;
+
 	const isItemLoaded = (index: number) =>
 		index < schedules.length && schedules[index] !== null;
 
@@ -42,14 +46,16 @@ function ServiceScheduleList({ schedules, services }: Props) {
 		<div className={styles["service-schedule"]}>
 			<InfiniteLoader
 				isItemLoaded={isItemLoaded}
-				itemCount={numberOfServices}
+				itemCount={itemCount}
 				loadMoreItems={loadMoreItems}
+				minimumBatchSize={10}
+				threshold={10}
 			>
 				{({ onItemsRendered, ref }) => (
 					<div className={styles["service-schedule__list"]}>
 						<FixedSizeList
 							height={itemSizeInPx * numberOfItemsToRender}
-							itemCount={numberOfServices}
+							itemCount={itemCount}
 							itemSize={itemSizeInPx}
 							width={rowWidthInPx}
 							overscanCount={10}
