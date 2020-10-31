@@ -5,5 +5,11 @@
 	flex-direction: column;
 	position: absolute;
 	top: -67px;
-	left: 200px;
+	left: 120px;
+}
+
+@media only screen and (min-width: 768px) {
+	.skeleton-service-program-list {
+		left: 200px;
+	}
 }

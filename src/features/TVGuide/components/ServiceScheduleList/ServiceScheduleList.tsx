@@ -26,7 +26,7 @@ function ServiceScheduleList({ schedules, services }: Props) {
 	const numberOfItemsToRender = 20;
 	const numberOfServices = 546;
 	const itemSizeInPx = 67;
-	const rowWidthInPx = 6920;
+	const rowWidthInPx = window.innerWidth < 768 ? 6840 : 6920;
 
 	const hasMoreToLoad = schedules.length < numberOfServices;
 

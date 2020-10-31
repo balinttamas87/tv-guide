@@ -9,7 +9,7 @@
 .time-line-scrollable {
 	position: absolute;
 	top: 0;
-	left: 200px;
+	left: 120px;
 	right: 0;
 	bottom: 0;
 	/* overflow: hidden; */
@@ -22,4 +22,10 @@
 	background: linear-gradient(90deg, #0644a1, #862e81);
 	color: #ffffff;
 	border-bottom: 1px solid rgba(85, 174, 254, 0.2);
+}
+
+@media only screen and (min-width: 768px) {
+	.time-line-scrollable {
+		left: 200px;
+	}
 }
