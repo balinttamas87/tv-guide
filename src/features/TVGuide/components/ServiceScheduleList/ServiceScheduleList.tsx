@@ -12,6 +12,7 @@ import {
 	getSchedules,
 } from "../../store/tvGuideSlice";
 import styles from "./styles.module.css";
+import SkeletonServiceProgramList from "../ServiceProgramList/Skeleton/SkeletonServiceProgramList";
 
 interface Props {
 	schedules: Schedule[];
@@ -29,7 +30,7 @@ function ServiceScheduleList({ schedules, services }: Props) {
 
 	const hasMoreToLoad = schedules.length < numberOfServices;
 
-	const itemCount = hasMoreToLoad ? schedules.length + 10 : schedules.length;
+	const itemCount = hasMoreToLoad ? schedules.length + 15 : schedules.length;
 
 	const isItemLoaded = (index: number) =>
 		index < schedules.length && schedules[index] !== null;
@@ -48,8 +49,8 @@ function ServiceScheduleList({ schedules, services }: Props) {
 				isItemLoaded={isItemLoaded}
 				itemCount={itemCount}
 				loadMoreItems={loadMoreItems}
-				minimumBatchSize={10}
-				threshold={10}
+				minimumBatchSize={15}
+				threshold={15}
 			>
 				{({ onItemsRendered, ref }) => (
 					<div className={styles["service-schedule__list"]}>
@@ -64,15 +65,21 @@ function ServiceScheduleList({ schedules, services }: Props) {
 						>
 							{({ index, style }) => (
 								<div style={style} className={styles["service-schedule__row"]}>
-									<ServiceBox
-										number={services[index]?.c}
-										id={services[index]?.sid}
-										title={services[index]?.t}
-									/>
-									<ServiceProgramList
-										schedule={schedules[index]}
-										key={schedules[index]?.["sid"]}
-									/>
+									<>
+										<ServiceBox
+											number={services[index]?.c}
+											id={services[index]?.sid}
+											title={services[index]?.t}
+										/>
+										{!isItemLoaded(index) ? (
+											<SkeletonServiceProgramList />
+										) : (
+											<ServiceProgramList
+												schedule={schedules[index]}
+												key={schedules[index]?.["sid"]}
+											/>
+										)}
+									</>
 								</div>
 							)}
 						</FixedSizeList>
