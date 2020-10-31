@@ -8,10 +8,13 @@
 
 [Things that I have experimented with for the first time](#things-that-i-have-experimented-with-for-the-first-time)
 
+[Notes to test the UI on different screen sizes](#notes-to-test-the-ui-on-different-screen-sizes)
+
 ## To start the project
 
-Clone this repo, `cd` into it and
-run 
+Clone this repo, `cd` into it
+### `cd tv-guide`
+and run 
 ### `yarn`
 from the terminal to install dependencies listed in package.json.
 
@@ -58,6 +61,10 @@ https://www.tvguide.com/listings/ (easy on the eyes) , https://www.sky.com/tv-gu
 - redux-toolkit combined with TypeScript (I have tried redux-toolkit before without TypeScript)
 - CSS Modules
 - react-loading-skeleton to indicate loading of schedules
+
+## Notes to test the UI on different screen sizes
+It is better and more reliable to test the UI for smaller screens on an actual device like a mobile phone.
+I have used and iPhone for mobile and an iPad for tablet.
 
 
 ## Project has been bootstrapped with CRA using Redux Toolkit and TypeScript template
