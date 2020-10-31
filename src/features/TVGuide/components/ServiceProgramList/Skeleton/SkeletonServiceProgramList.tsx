@@ -1,19 +1,10 @@
 import React from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import styles from "./styles.module.css";
 
 function SkeletonServiceProgramList() {
 	return (
-		<div
-			style={{
-				width: "100vw",
-				display: "flex",
-				flexWrap: "nowrap",
-				flexDirection: "column",
-				position: "absolute",
-				top: "-67px",
-				left: "200px",
-			}}
-		>
+		<div className={styles["skeleton-service-program-list"]}>
 			<SkeletonTheme
 				color="rgba(187, 187, 187, 0.2)"
 				highlightColor="rgba(255,255,255, 0.1)"
