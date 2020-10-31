@@ -1,10 +1,12 @@
 [To start the project](#to-start-the-project)
 
-[The following has been built or done for this technical test](#the-following-has-been-built-or-done-for-this-technical-test)
+[To run the tests](#to-run-the-tests)
 
-[Things that I have experimented with for the first time](#things-that-i-have-experimented-with-for-the-first-time)
+[UI and UX improvements](#ui-and-ux-improvements)
 
 [Some things that could be improved or added](#some-things-that-could-be-improved-or-added)
+
+[Things that I have experimented with for the first time](#things-that-i-have-experimented-with-for-the-first-time)
 
 ## To start the project
 
@@ -18,36 +20,35 @@ Once all packages are installed you can run
 
 The app will run on the following url: [http://localhost:3000](http://localhost:3000).
 
-To run the tests run
-### `yarn test -- --coverage --verbose
+## To run the tests
+Run
+### `yarn test -- --coverage --verbose`
 (you might need to hit the letter "a" to run all tests when prompted)
 
-## The following has been built or done for this technical test
-In the following video you can watch the app in action and all its features
+## UI and UX improvements
 
-{link for video coming sooon}
+- On smaller screens the date can be selected by navigating backwards and forwards with buttons while on larger screen the dates are listed right next to each other. Buttons should be disabled when there is no previous or next date. Also, only the schedules of the last selected date would be set / displayed for the user.
+This is so that no matter how fast they click they alwasys receive the expected schedule.
+- Displaying a "timeline" so users can see around what time an airing / program starts and ends.
+- Indicate loading while fetching schedules to be displayed
+- Tried to implement infinite scrolling with windowing so it would be more convenient for users to navigate and possibly rendering the contents would be faster as well. (this could have gone a lot better)
 
-- Display all channels in a list format
-- A given channel's airings (programs) are displayed in a row and users can navigate through them by scrolling.
-- Navigating through seven days of scheduled airings by selecting a date on larger screens and clicking either next or previous buttons on smaller screens.
-- Details of a given airing (program) can be viewed in a modal by clicking on the airing. The modal can only be closed by clicking the Close button.
-- Some tests for the Modal component (Jest + react-testing-library)
-- To make rendering faster I have chosen a library called react-window. It is working. 
-	However, currently I am not using it in a performant way. Possibly when merging the existing schedules array with the newly fetched schedules there is a 					performance bottleneck.
+## Some things that could be improved or added
+- Improve performance of rendering schedules and store them for offline usage with service workers
+- Ability to filter by service genre / program genre
+- Ability to save favourite channels and filter by favourites or lock them at the top of the list
+- Load schedules starting from the current time
+
 
 ## Things that I have experimented with for the first time
 - react-window for windowing
 - dayjs to make working with dates and date like strings easier and cleaner
 - redux-toolkit combined with TypeScript (I have tried redux-toolkit before without TypeScript)
-
-
-## Some things that could be improved or added
-- Find a better way of updating the schedules list to make sure rendering does not come to halt
-- Ability to filter by service genre
-
+- react-loading-skeleton to indicate loading of schedules
 
 
 ## Project has been bootstrapped with CRA using Redux Toolkit and TypeScript template
+```npx create-react-app my-app --template redux-typescript)```
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
