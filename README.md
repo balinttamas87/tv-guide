@@ -34,12 +34,13 @@ This is so that no matter how fast they click they alwasys receive the expected 
 - Tried to implement infinite scrolling with windowing so it would be more convenient for users to navigate and possibly rendering the contents would be faster as well.
 
 ## Some things that could be improved or added
-- Improve performance of rendering schedules and store them for offline usage with service workers
-- Ability to filter by service genre / program genre
-- Ability to save favourite channels and filter by favourites or lock them at the top of the list
-- Load schedules starting from the current time
-- images could be in webp format
-- would be nice to only query the services and schedules that we need to render within the window via graphQL
+- Improve performance of rendering schedules and store them for offline usage with service workers.
+- Ability to filter by service genre / program genre.
+- Ability to save favourite channels and filter by favourites or lock them at the top of the list.
+- SVG icons for the forward and backward buttons.
+- Load schedules starting from the current time.
+- Images could be in webp format.
+- Would be nice to only query the services and schedules that we need to render within the window via GraphQL.
 
 
 ## Things that I have experimented with for the first time
