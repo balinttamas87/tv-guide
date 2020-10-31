@@ -28,10 +28,10 @@ Run
 ## UI and UX improvements
 
 - On smaller screens the date can be selected by navigating backwards and forwards with buttons while on larger screen the dates are listed right next to each other. Buttons should be disabled when there is no previous or next date. Also, only the schedules of the last selected date would be set / displayed for the user.
-This is so that no matter how fast they click they alwasys receive the expected schedule.
+This is so that no matter how fast they click they always receive the expected schedule.
 - Displaying a "timeline" so users can see around what time an airing / program starts and ends.
-- Indicate loading while fetching schedules to be displayed
-- Tried to implement infinite scrolling with windowing so it would be more convenient for users to navigate and possibly rendering the contents would be faster as well.
+- Indicate loading while fetching schedules to be displayed.
+- Implemented infinite scrolling with windowing so it would be more convenient for users to navigate and possibly rendering the contents would be faster as well.
 
 ## Some things that could be improved or added
 - Improve performance of rendering schedules and store them for offline usage with service workers.
