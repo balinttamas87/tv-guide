@@ -45,6 +45,8 @@ This is so that no matter how fast they click they always receive the expected s
 - Would be nice to only query the services and schedules that we need to render within the window via GraphQL.
 - Error handling (i.e: when there is no response from the server we could show a dialog to the user and let them know there has been an issue and what action they could take). For this we could compose a new modal from our <Modal /> component or use a snackbar instead.
 - Increased test coverage and better tests.
+- Better CSS (store values like colours, fonts, breakpoints as if we were using a design system)
+- `<ServiceScheduleList />` component could be broken down into smaller pieces. (i.e: extract `<Row />`)
 
 There are many things that could be improved. However, I would not want to make this readme too long. I did some research about tv guides. I have examanined around 10 of them. Most of them in the UK and some international ones in different countries. My favourite would be a combination of the following 3 when it comes to UI/UX.
 https://www.tvguide.com/listings/ (easy on the eyes) , https://www.sky.com/tv-guide/, (reliable) https://www.freeview.co.uk/tv-guide (different layouts)
@@ -54,6 +56,7 @@ https://www.tvguide.com/listings/ (easy on the eyes) , https://www.sky.com/tv-gu
 - react-window for windowing
 - dayjs to make working with dates and date like strings easier and cleaner
 - redux-toolkit combined with TypeScript (I have tried redux-toolkit before without TypeScript)
+- CSS Modules
 - react-loading-skeleton to indicate loading of schedules
 
 
