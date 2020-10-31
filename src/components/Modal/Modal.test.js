@@ -3,7 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import Modal from "./Modal";
 
 
-describe("Test pagination component", () => {
+describe("Test Modal component", () => {
 	it("should render Modal with the body content provided as a component", () => {
 		const ModalBodyContent = () => (<div>content of modal body</div>);
 		const { queryByText } = render(
@@ -32,7 +32,7 @@ describe("Test pagination component", () => {
 		expect(queryByText(/content of modal body/i)).toBeNull();
 	});
 
-	it("should call onCloseModal", () => {
+	it("should call onCloseModal when clicking the close button", () => {
 		const onCloseModal = jest.fn();
 		const ModalBodyContent = () => (<div>content of modal body</div>);
 
