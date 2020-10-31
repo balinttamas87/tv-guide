@@ -22,8 +22,10 @@ The app will run on the following url: [http://localhost:3000](http://localhost:
 
 ## To run the tests
 Run
-### `yarn test -- --coverage --verbose`
-(you might need to hit the letter "a" to run all tests when prompted)
+### `yarn coverage`
+which will run `yarn test  --coverage --verbose --watchAll=false`.
+You can find a html file where you can better examine the coverage.
+It is located in `/coverage/lcov-report/index.html` .
 
 ## UI and UX improvements
 
@@ -41,6 +43,11 @@ This is so that no matter how fast they click they always receive the expected s
 - Load schedules starting from the current time.
 - Images could be in webp format.
 - Would be nice to only query the services and schedules that we need to render within the window via GraphQL.
+- Error handling (i.e: when there is no response from the server we could show a dialog to the user and let them know there has been an issue and what action they could take). For this we could compose a new modal from our <Modal /> component or use a snackbar instead.
+- Increased test coverage and better tests.
+
+There are many things that could be improved. However, I would not want to make this readme too long. I did some research about tv guides. I have examanined around 10 of them. Most of them in the UK and some international ones in different countries. My favourite would be a combination of the following 3 when it comes to UI/UX.
+https://www.tvguide.com/listings/ (easy on the eyes) , https://www.sky.com/tv-guide/, (reliable) https://www.freeview.co.uk/tv-guide (different layouts)
 
 
 ## Things that I have experimented with for the first time
