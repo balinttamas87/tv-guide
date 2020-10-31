@@ -22,7 +22,6 @@ function ServiceProgram({ event }: Props) {
 
 	return (
 		<div
-			key={event.eid}
 			className={styles["service-program"]}
 			style={{ width: getWidth(event.d) }}
 		>
